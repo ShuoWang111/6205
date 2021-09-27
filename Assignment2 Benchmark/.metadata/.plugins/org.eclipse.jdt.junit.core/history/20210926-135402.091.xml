@@ -1,6 +1,0 @@
-<?xml version="1.0" encoding="UTF-8"?><testrun name="BenchmarkTest" project="INFO6205" tests="2" started="2" failures="0" errors="0" ignored="0">
-  <testsuite name="edu.neu.coe.info6205.util.BenchmarkTest" time="1.263">
-    <testcase name="testWaitPeriods" classname="edu.neu.coe.info6205.util.BenchmarkTest" time="1.262"/>
-    <testcase name="getWarmupRuns" classname="edu.neu.coe.info6205.util.BenchmarkTest" time="0.001"/>
-  </testsuite>
-</testrun>
