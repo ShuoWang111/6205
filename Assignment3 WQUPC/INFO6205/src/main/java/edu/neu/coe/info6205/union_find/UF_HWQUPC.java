@@ -190,7 +190,6 @@ public class UF_HWQUPC implements UF {
     		height[i] += height[j];
     		parent[j] = parent[i];
     	}
-    	count--;
     }
 
     /**

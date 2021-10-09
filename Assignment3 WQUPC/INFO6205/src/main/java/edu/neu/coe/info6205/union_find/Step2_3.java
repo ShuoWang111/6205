@@ -20,9 +20,10 @@ public class Step2_3{
 	//generates one random pair of integers between 0 and n-1 (task2)
     private static int[] Random_pairs(int n) {
     	int[] pair = new int[2];
+    	int k = n-1;
     	pair[0] = (int)(Math.random()*n);
     	pair[1] = (int)(Math.random()*n);
-//    	System.out.println("Random pairs of integers between 0 and "+n+" : "+Arrays.toString(pair));
+//    	System.out.println("Random pairs of integers between 0 and "+k+" : "+Arrays.toString(pair));
     	return pair;
     }
 	
@@ -37,11 +38,7 @@ public class Step2_3{
     		}
     	}
     	return c;
-    	
     }
-    
-    
-  
     
 
 	//takes n as the argument and returns the number of connections (task2)
@@ -50,12 +47,13 @@ public class Step2_3{
     	int[] pair = new int[2];
     	while(!Allconnected(n)) {
     		pair = Random_pairs(n);
+    		number++;
     		if(!uf.connected(pair[0],pair[1])) {
     			uf.union(pair[0],pair[1]);
     		}
-    		number++;
     	}
 //    	System.out.println("The number of connections: "+ number);
+//    	System.out.println("Count(Component): "+ uf.components());
     	return number;
     }
     
@@ -63,9 +61,8 @@ public class Step2_3{
     private static int AverageCount(int n, int t) {
     	int sum = 0;
     	for(int i = 0; i < t; i++) {
-    		Step2_3 step = new Step2_3(n);
-    		sum += count(n);
-    		
+    		Step2_3 step_temp = new Step2_3(n);
+    		sum += step_temp.count(n);
     	}
 //    	System.out.println("sum: "+ sum);
     	return sum/t;
@@ -75,7 +72,7 @@ public class Step2_3{
 	    	Scanner scan = new Scanner(System.in);
 	    	List<String> dataList=new ArrayList<String>();
 	    	
-	    	int n = 500;					//the number of "sites"
+	    	int n = 1000;					//the number of "sites"
 			int[] connection = new int[n]; 	//the number of connections
 			int t = 100;					//the times of each site tests
 			
@@ -84,11 +81,13 @@ public class Step2_3{
 //				System.out.println("Inputed a wrong type! Input n (must be integer):");
 //			}
 //			n = scan.nextInt();
-			for(int i = n-1; i>0; i--) {
-				
-//				connection[i] = count(i);
-				connection[i] = AverageCount(i,t);
+			for(int i = n; i>0; i--) {
+//				Step2_3 step = new Step2_3(i);
+//				connection[i-1] = step.count(i);
+				connection[i-1] = AverageCount(i,t);
 			}
+			
+			// Print and build a list
 			for(int i=0;i<connection.length;i++)
 			{	
 				int site = i+1;
@@ -98,7 +97,7 @@ public class Step2_3{
 			}
 			
 			// export data
-	        boolean isSuccess=CSVUtils.exportCsv(new File("/Users/wangshuo/Desktop/test.csv"), dataList);
+	        boolean isSuccess=CSVUtils.exportCsv(new File("/Users/wangshuo/Desktop/data3.csv"), dataList);
 	        System.out.println(isSuccess);
 
 
